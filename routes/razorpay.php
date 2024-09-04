@@ -1,22 +1,22 @@
 <?php
 
-//Paytm
+//razorpay
 
-use App\Http\Controllers\Payment\PaytmController;
+use App\Http\Controllers\Payment\razorpayController;
 use App\Http\Controllers\Payment\ToyyibpayController;
 use App\Http\Controllers\Payment\MyfatoorahController;
 use App\Http\Controllers\Payment\KhaltiController;
 
-Route::controller(PaytmController::class)->group(function () {
-    Route::get('/paytm/index', 'pay');
-    Route::post('/paytm/callback', 'callback')->name('paytm.callback');
+Route::controller(razorpayController::class)->group(function () {
+    Route::get('/razorpay/index', 'pay');
+    Route::post('/razorpay/callback', 'callback')->name('razorpay.callback');
 });
 
 //Admin
 Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function(){
-    Route::controller(PaytmController::class)->group(function () {
-        Route::get('/paytm_configuration', 'credentials_index')->name('paytm.index');
-        Route::post('/paytm_configuration_update', 'update_credentials')->name('paytm.update_credentials');
+    Route::controller(razorpayController::class)->group(function () {
+        Route::get('/razorpay_configuration', 'credentials_index')->name('razorpay.index');
+        Route::post('/razorpay_configuration_update', 'update_credentials')->name('razorpay.update_credentials');
     });
 });
 
